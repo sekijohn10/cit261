@@ -1,2 +1,3 @@
 # cit261
-website
+Home page for fluency submissions.
+All submissions will have a link posted on this homepage.
