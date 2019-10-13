@@ -15,6 +15,11 @@
         </header>
     </div>
     <div class="container">
+        <div class="row">
+            <div class="col-s-12">
+                <p>Check the weather from over 200,000 cities in the world! Previous results displayed as well.</p>
+            </div>
+        </div>
         <form id="getWeather">
             <div class="row">
                 <div class="col-s-12">
@@ -40,9 +45,24 @@
                 <div class="col-5 col-s-3"></div>
             </div>
             <div class="row"><span class="red"></span></div>
+            <div class="row">
+                <div class="col-s-4">
+                </div>
+                <div class="col-1 col-s-2">
+                    <button type="reset" id="clear" name="clear" onclick="clearForm()">Clear</button>
+                </div>
+                <div class="col-7 col-s-6">
+                    <button type="button" id="search" name="search" onclick="checkWeather()">Get Weather</button>
+                </div>
+            </div>
         </form>
     </div>
     <div class="container2">
+        <div class="row">
+            <div class="col-s-12">
+                Weather for city or ZIP code. Listed in order of searched.
+            </div>
+        </div>
         <div id="weather">
         </div>
     </div>
