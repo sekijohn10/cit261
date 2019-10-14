@@ -11,7 +11,7 @@
 <body>
     <div class="row">
         <header>
-            Find your Poke'mon info using the Poke'API
+            Find your Pokémon info using the PokéAPI
         </header>
     </div>
     <div class="container">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-4 col-s-5">
                     <select id="queryTopic" name="queryTopic" onchange="updateQuery()">
-                        <option value="pokemon">Poke'mon</option>
+                        <option value="pokemon">Pokémon</option>
                         <option value="move">Moves</option>
                         <option value="ability">Abilities</option>
                         <option value="type">Types</option>
@@ -37,14 +37,14 @@
             </div>
             <div class="row">
                 <div class="col-3 col-s-4">
-                    <label for="queryText">Poke'mon name or id:</label>
+                    <label for="queryText" id="queryLabel">Pokémon name or id:</label>
                 </div>
                 <div class="col-4 col-s-5">
                     <input type="text" id="queryText" name="queryText" />
                 </div>
                 <div class="col-5 col-s-3"></div>
             </div>
-            <div class="row"><span class="red"></span></div>
+            <div class="row"><span class="red" id="error"></span></div>
             <div class="row">
                 <div class="col-s-3">
                 </div>
