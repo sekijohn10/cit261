@@ -30,13 +30,13 @@ function getQuery() {
         if (this.readyState == 4 && this.status == 200) {
             let json = this.responseText;
             let obj = JSON.parse(json);
-            if (searchItem == "pokemon") {
+            if (queryType == "pokemon/") {
                 addPokemon(obj, searchItem);
             }
-            else if (searchItem == "move") {
+            else if (queryType == "move/") {
                 addMove(obj);
             }
-            else if (searchItem == "ability") {
+            else if (queryType == "ability/") {
                 addAbility(obj);
             }
             else {
@@ -45,7 +45,8 @@ function getQuery() {
             document.getElementById("error").innerHTML = "";
         }
         else if (this.readyState == 4 && this.status != 200) {
-            document.getElementById("error").innerHTML = "Invalid " + searchItem + " inquery " + this.statusText + " make sure to use all lowercase";
+            document.getElementById("error").innerHTML = "Invalid " + document.getElementById("queryTopic").value +
+                " inquery " + this.statusText + " make sure to use all lowercase";
         }
     };
     xmlhttp.open("GET", url + queryType + searchItem, true)
