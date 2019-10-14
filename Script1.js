@@ -15,7 +15,9 @@ function updateQuery() {
 }
 
 function clearPage() {
-
+    document.getElementById("queryLabel").innerHTML = "Pok\u00E9mon's name or id:";
+    document.getElementById("error").innerHTML = "";
+    document.getElementById("results").innerHTML = "";
 }
 
 function getQuery() {
