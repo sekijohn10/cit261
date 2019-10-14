@@ -66,29 +66,51 @@ function addPokemon(obj) {
     let type = "Type: ";
     for (let i = 0; i < obj.types.length; i++) {
         type += obj.types[i].type.name;
-        if (i < obj.types.length - 1) {
+        if (i < obj.types.length - 2) {
             type += ", ";
+        }
+        else if (i < obj.types.length - 1) {
+            if (obj.types.length > 2) {
+                type += ", and ";
+            }
+            else {
+                type += " and ";
+            }
         }
     }
     let ability = "Abilities: ";
     for (let i = 0; i < obj.abilities.length; i++) {
         ability += obj.abilities[i].ability.name;
-        if (i < obj.abilities.length - 1) {
+        if (i < obj.abilities.length - 2) {
             ability += ", ";
+        }
+        else if (i < obj.abilities.length - 1) {
+            if (obj.abilities.length > 2) {
+                ability += ", and ";
+            }
+            else {
+                ability += " and ";
+            }
         }
     }
     let move = "Moves: "
     for (let i = 0; i < obj.moves.length; i++) {
         move += obj.moves[i].move.name;
-        if (i < obj.moves.length - 1) {
+        if (i < obj.moves.length - 2) {
             move += ", ";
+        }
+        else if(i < obj.moves.length - 1) {
+            move += ", and ";
         }
     }
     let stat = "Base Stats: "
     for (let i = 0; i < obj.stats.length; i++) {
         stat += obj.stats[i].stat.name + ": " + obj.stats[i].base_stat;
-        if (i < obj.stats.length - 1) {
+        if (i < obj.stats.length - 2) {
             stat += ", ";
+        }
+        else if (i < obj.stats.length - 1) {
+            stat += ", and ";
         }
     }
     let text2 = document.createTextNode(type);
@@ -150,8 +172,11 @@ function addAbility(obj) {
     let pokemon = "Pok\u00E9mon that can have this ability: ";
     for (let i = 0; i < obj.pokemon.length; i++) {
         pokemon += obj.pokemon[i].pokemon.name;
-        if (i < obj.pokemon.length - 1) {
+        if (i < obj.pokemon.length - 2) {
             pokemon += ", ";
+        }
+        else if (i < obj.pokemon.length - 1) {
+            pokemon += ", and ";
         }
     }
     let text2 = document.createTextNode(effect);
@@ -178,15 +203,21 @@ function addType(obj) {
     let moves = "Moves that are this type: ";
     for (let i = 0; i < obj.moves.length; i++) {
         moves += obj.moves[i].name;
-        if (i < obj.moves.length - 1) {
+        if (i < obj.moves.length - 2) {
             moves += ", ";
+        }
+        else if (i < obj.moves.length - 1) {
+            moves += ", and ";
         }
     }
     let pokemon = "Pokemon that are this type: ";
     for (let i = 0; i < obj.pokemon.length; i++) {
         pokemon += obj.pokemon[i].pokemon.name;
-        if (i < obj.pokemon.length - 1) {
+        if (i < obj.pokemon.length - 2) {
             pokemon += ", ";
+        }
+        else if (i < obj.pokemon.length - 1) {
+            pokemon += ", and ";
         }
     }
     let text2 = document.createTextNode(moves);
