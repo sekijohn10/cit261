@@ -116,11 +116,11 @@ function addMove(obj) {
     let section = document.createElement("div");
     let nameID = obj.names[2].name + " id: " + obj.id;
     let text1 = document.createTextNode(nameID);
-    let stat = "Power: " + obj.power + " Accuracy: " + obj.accuracy + " PP: " + obj.pp;
-    let type = "Damage type: " + obj.type.name + " Damage class: " + obj.damage_class.name +
-        " Contest type: " + obj.contest_type.name;
+    let stat = "Power: " + obj.power + ", Accuracy: " + obj.accuracy + ", PP: " + obj.pp;
+    let type = "Damage type: " + obj.type.name + ", Damage class: " + obj.damage_class.name +
+        ", Contest type: " + obj.contest_type.name;
     let effect = "Effect: " + obj.effect_entries[0].short_effect;
-    let flavor = "Flavor Text: " + obj.flavor_text_entries[2].flavor_text;
+    let flavor = "Flavor text: " + obj.flavor_text_entries[2].flavor_text;
     let text2 = document.createTextNode(stat);
     let text3 = document.createTextNode(type);
     let text4 = document.createTextNode(effect);
@@ -140,8 +140,39 @@ function addMove(obj) {
 
 function addAbility(obj) {
     let element = document.getElementById("results");
+    let head = document.createElement("h4");
+    let body = document.createElement("p");
+    let section = document.createElement("div");
+    let nameID = obj.names[2].name + " id: " + obj.id;
+    let text1 = document.createTextNode(nameID);
+    let effect = "Effect: " + obj.effect_entries[0].short_effect;
+    let flavor = "Flavor text: " + obj.flavor_text_entries[2].flavor_text;
+    let pokemon = "Pok\u00E9mon that can have this ability: ";
+    for (let i = 0; i < obj.pokemon.length; i++) {
+        pokemon += obj.pokemon[i].pokemon.name;
+        if (i < obj.pokemon.length - 1) {
+            pokemon += ", ";
+        }
+    }
+    let text2 = document.createTextNode(effect);
+    let text3 = document.createTextNode(flavor);
+    let text4 = document.createTextNode(pokemon);
+    head.appendChild(text1);
+    body.appendChild(text2);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text3);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text4);
+    section.appendChild(head);
+    section.appendChild(body);
+    element.appendChild(section);
 }
 
 function addType(obj) {
     let element = document.getElementById("results");
+    let head = document.createElement("h4");
+    let body = document.createElement("p");
+    let section = document.createElement("div");
+    let nameID = obj.names[2].name + " id: " + obj.id;
+    let text1 = document.createTextNode(nameID);
 }
