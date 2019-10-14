@@ -173,6 +173,29 @@ function addType(obj) {
     let head = document.createElement("h4");
     let body = document.createElement("p");
     let section = document.createElement("div");
-    let nameID = obj.names[2].name + " id: " + obj.id;
+    let nameID = obj.names[6].name + " id: " + obj.id;
     let text1 = document.createTextNode(nameID);
+    let moves = "Moves that are this type: ";
+    for (let i = 0; i < obj.moves.length; i++) {
+        moves += obj.moves[i].name;
+        if (i < obj.moves.length - 1) {
+            moves += ", ";
+        }
+    }
+    let pokemon = "Pokemon that are this type: ";
+    for (let i = 0; i < obj.pokemon.length; i++) {
+        pokemon += obj.pokemon[i].pokemon.name;
+        if (i < obj.pokemon.length - 1) {
+            pokemon += ", ";
+        }
+    }
+    let text2 = document.createTextNode(moves);
+    let text3 = document.createTextNode(pokemon);
+    head.appendChild(text1);
+    body.appendChild(text2);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text3);
+    section.appendChild(head);
+    section.appendChild(body);
+    element.appendChild(section);
 }
