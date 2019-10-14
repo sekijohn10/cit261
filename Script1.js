@@ -53,16 +53,12 @@ function getQuery() {
     xmlhttp.send();
 }
 
-function additionalInfo(key, name) {
-
-}
-
 function addPokemon(obj) {
     let element = document.getElementById("results");
     let head = document.createElement("h4");
     let body = document.createElement("p");
     let section = document.createElement("div");
-    let nameID = obj.forms[0].name.charAt(0).toUpperCase() + obj.forms[0].name.slice(1) + " " +
+    let nameID = obj.forms[0].name.charAt(0).toUpperCase() + obj.forms[0].name.slice(1) + " id: " +
         obj.game_indices[0].game_index;
     let text1 = document.createTextNode(nameID);
     let image = document.createElement("img");
@@ -115,6 +111,31 @@ function addPokemon(obj) {
 
 function addMove(obj) {
     let element = document.getElementById("results");
+    let head = document.createElement("h4");
+    let body = document.createElement("p");
+    let section = document.createElement("div");
+    let nameID = obj.name.name + " id: " + obj.id;
+    let text1 = document.createTextNode(nameID);
+    let stat = "Power: " + obj.power + " Accuracy: " + obj.accuracy + " PP: " + obj.pp;
+    let type = "Damage type: " + obj.type.name + " Damage class: " + obj.damage_class +
+        " Contest type: " + obj.contest_type;
+    let effect = "Effect: " + obj.effect_entries.short_effect;
+    let flavor = "Flavor Text: " + obj.flavor_text_entries.flavor_text;
+    let text2 = document.createTextNode(stat);
+    let text3 = document.createTextNode(type);
+    let text4 = document.createTextNode(effect);
+    let text5 = document.createTextNode(flavor);
+    head.appendChild(text1);
+    body.appendChild(text2);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text3);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text4);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text5);
+    section.appendChild(head);
+    section.appendChild(body);
+    element.appendChild(section);
 }
 
 function addAbility(obj) {
