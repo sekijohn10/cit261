@@ -4,10 +4,10 @@ function updateQuery() {
         document.getElementById("queryLabel").innerHTML = "Pokémon's name or id:";
     }
     else if (topic == "move") {
-        dcoument.getElementById("queryLabel").innerHTML = "Pokémon moves by name or id:";
+        document.getElementById("queryLabel").innerHTML = "Pokémon moves by name or id:";
     }
     else if (topic == "ability") {
-        dcoument.getElementById("queryLabel").innerHTML = "Pokémon abilities by name or id:";
+        document.getElementById("queryLabel").innerHTML = "Pokémon abilities by name or id:";
     }
     else {
         document.getElementById("queryLabel").innerHTML = "Pokémon types by name or id:";
