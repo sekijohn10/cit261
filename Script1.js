@@ -230,3 +230,15 @@ function addType(obj) {
     section.appendChild(body);
     element.appendChild(section);
 }
+
+function stringifyExample(obj) {
+    let url = "saveObjects.php";
+    let json = JSON.stringify(obj);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("Successfully saved json " + json);
+    };
+    xmlhttp.open("GET", url + "?q=" + json, true)
+    xmlhttp.send();
+}
