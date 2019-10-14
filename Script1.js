@@ -21,9 +21,53 @@ function clearPage() {
 }
 
 function getQuery() {
+    let url = "https://pokeapi.co/api/v2/";
+    let queryType = document.getElementById("queryTopic").value + "/";
+    let searchItem = document.getElementById("queryText").value + "/";
 
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let json = this.responseText;
+            let obj = JSON.parse(json);
+            if (searchItem == "pokemon") {
+                addPokemon(obj);
+            }
+            else if (searchItem == "move") {
+                addMove(obj);
+            }
+            else if (searchItem == "ability") {
+                addAbility(obj);
+            }
+            else {
+                addType(obj);
+            }
+            document.getElementById("error").innerHTML = "";
+        }
+        else if (this.readyState == 4 && this.status != 200) {
+            document.getElementById("error").innerHTML = "Invalid " + searchItem;
+        }
+    };
+    xmlhttp.open("GET", url + queryType + searchItem, true)
+    xmlhttp.send();
 }
 
 function additionalInfo(key, name) {
 
+}
+
+function addPokemon(obj) {
+    let element = document.getElementById("results");
+}
+
+function addMove(obj) {
+    let element = document.getElementById("results");
+}
+
+function addAbility(obj) {
+    let element = document.getElementById("results");
+}
+
+function addType(obj) {
+    let element = document.getElementById("results");
 }
