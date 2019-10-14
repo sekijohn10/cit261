@@ -31,7 +31,7 @@ function getQuery() {
             let json = this.responseText;
             let obj = JSON.parse(json);
             if (searchItem == "pokemon") {
-                addPokemon(obj);
+                addPokemon(obj, searchItem);
             }
             else if (searchItem == "move") {
                 addMove(obj);
@@ -45,7 +45,7 @@ function getQuery() {
             document.getElementById("error").innerHTML = "";
         }
         else if (this.readyState == 4 && this.status != 200) {
-            document.getElementById("error").innerHTML = "Invalid " + searchItem;
+            document.getElementById("error").innerHTML = "Invalid " + searchItem + " inquery " + this.statusText + " make sure to use all lowercase";
         }
     };
     xmlhttp.open("GET", url + queryType + searchItem, true)
@@ -56,8 +56,28 @@ function additionalInfo(key, name) {
 
 }
 
-function addPokemon(obj) {
+function addPokemon(obj, name) {
     let element = document.getElementById("results");
+    let head = document.createElement("h4");
+    let body = document.createElement("p");
+    let section = document.createElement("div");
+    let text1 = document.createTextNode(name);
+    let image = document.createElement("img");
+    image.src = obj.sprites.front_default;
+    let info = "Abilities:";
+    for (let i = 0; i < obj.abilities.size(); i++) {
+        info += obj.abilities[i].ability.name;
+        if (i < obj.abilities.size() - 1) {
+            info += ", ";
+        }
+    }
+    let text2 = document.createTextNode();
+    head.appendChild(text1);
+    body.appendChild(text2);
+    section.appendChild(image);
+    section.appendChild(head);
+    section.appendChild(body);
+    element.appendChild(section);
 }
 
 function addMove(obj) {
