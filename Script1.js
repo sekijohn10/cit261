@@ -99,7 +99,7 @@ function addPokemon(obj) {
         if (i < obj.moves.length - 2) {
             move += ", ";
         }
-        else if(i < obj.moves.length - 1) {
+        else if (i < obj.moves.length - 1) {
             move += ", and ";
         }
     }
@@ -240,6 +240,6 @@ function stringifyExample(obj) {
             console.log("Successfully saved json " + json);
         }
     };
-    xmlhttp.open("GET", url + "?q=" + json, true)
+    xmlhttp.open("GET", url + "?q=" + json, true);
     xmlhttp.send();
 }
