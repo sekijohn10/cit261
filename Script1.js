@@ -66,7 +66,7 @@ function addPokemon(obj, name) {
     let image = document.createElement("img");
     image.src = obj.sprites.front_default;
     let info = "Abilities:";
-    for (let i = 0; i < obj.abilities.size(); i++) {
+    for (let i = 0; i < obj.abilities.length; i++) {
         info += obj.abilities[i].ability.name;
         if (i < obj.abilities.size() - 1) {
             info += ", ";
