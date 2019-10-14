@@ -238,6 +238,7 @@ function stringifyExample(obj) {
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             console.log("Successfully saved json " + json);
+        }
     };
     xmlhttp.open("GET", url + "?q=" + json, true)
     xmlhttp.send();
