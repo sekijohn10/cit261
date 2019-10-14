@@ -5,42 +5,42 @@
     <link rel="stylesheet" type="text/css" href="StyleSheet1.css" />
     <script src="Script1.js"></script>
     <meta charset="utf-8" />
-    <title>Submission 1</title>
+    <title>Poke'mon Info</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
     <div class="row">
         <header>
-            Weather Checker
+            Find your Poke'mon info using the Poke'API
         </header>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-s-12">
-                <p>Check the weather from over 200,000 cities in the world! Previous results displayed as well.</p>
+                <p>Select the type of search you would like to perform or click on an item in the search results</p>
             </div>
         </div>
-        <form id="getWeather">
-            <div class="row">
-                <div class="col-s-12">
-                    Please input a city or zipcode
-                </div>
-            </div>
+        <form id="searchCriteria">
             <div class="row">
                 <div class="col-3 col-s-4">
-                    <label for="city">City:</label>
+                    <label for="queryTopic">Search for:</label>
                 </div>
                 <div class="col-4 col-s-5">
-                    <input type="text" id="city" name="city" />
+                    <select id="queryTopic" name="queryTopic" onchange="updateQuery()">
+                        <option value="pokemon">Poke'mon</option>
+                        <option value="move">Moves</option>
+                        <option value="ability">Abilities</option>
+                        <option value="type">Types</option>
+                    </select>
                 </div>
                 <div class="col-5 col-s-3"></div>
             </div>
             <div class="row">
                 <div class="col-3 col-s-4">
-                    <label for="zipcode">ZIP code:</label>
+                    <label for="queryText">Poke'mon name or id:</label>
                 </div>
                 <div class="col-4 col-s-5">
-                    <input type="text" id="zipcode" name="zipcode" />
+                    <input type="text" id="queryText" name="queryText" />
                 </div>
                 <div class="col-5 col-s-3"></div>
             </div>
@@ -49,10 +49,10 @@
                 <div class="col-s-4">
                 </div>
                 <div class="col-1 col-s-2">
-                    <button type="reset" id="clear" name="clear" onclick="clearForm()">Clear</button>
+                    <button type="reset" id="clear" name="clear" onclick="clearPage()">Clear all</button>
                 </div>
                 <div class="col-7 col-s-6">
-                    <button type="button" id="search" name="search" onclick="checkWeather()">Get Weather</button>
+                    <button type="button" id="search" name="search" onclick="checkQuery()">Get Info</button>
                 </div>
             </div>
         </form>
@@ -60,10 +60,10 @@
     <div class="container2">
         <div class="row">
             <div class="col-s-12">
-                Weather for city or ZIP code. Listed in order of searched.
+                Items searched. Listed in order of searched, i.e. first to last. Click on highlighted text to search text item.
             </div>
         </div>
-        <div id="weather">
+        <div id="results">
         </div>
     </div>
 </body>
