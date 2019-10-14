@@ -23,7 +23,7 @@ function clearPage() {
 function getQuery() {
     let url = "https://pokeapi.co/api/v2/";
     let queryType = document.getElementById("queryTopic").value + "/";
-    let searchItem = document.getElementById("queryText").value + "/";
+    let searchItem = document.getElementById("queryText").value.toLowerCase() + "/";
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -31,7 +31,7 @@ function getQuery() {
             let json = this.responseText;
             let obj = JSON.parse(json);
             if (queryType == "pokemon/") {
-                addPokemon(obj, searchItem);
+                addPokemon(obj);
             }
             else if (queryType == "move/") {
                 addMove(obj);
@@ -57,24 +57,56 @@ function additionalInfo(key, name) {
 
 }
 
-function addPokemon(obj, name) {
+function addPokemon(obj) {
     let element = document.getElementById("results");
     let head = document.createElement("h4");
     let body = document.createElement("p");
     let section = document.createElement("div");
-    let text1 = document.createTextNode(name);
+    let nameID = obj.forms[0].name.charAt(0).toUpperCase() + obj.forms[0].name.slice(1) + " " +
+        obj.game_indices[0].game_index;
+    let text1 = document.createTextNode(nameID);
     let image = document.createElement("img");
     image.src = obj.sprites.front_default;
-    let info = "Abilities:";
-    for (let i = 0; i < obj.abilities.length; i++) {
-        info += obj.abilities[i].ability.name;
-        if (i < obj.abilities.size() - 1) {
-            info += ", ";
+    let type = "Type: ";
+    for (let i = 0; i < obj.types.length; i++) {
+        type += obj.types[i].type.name;
+        if (i < obj.types.length - 1) {
+            type += ", ";
         }
     }
-    let text2 = document.createTextNode();
+    let ability = "Abilities: ";
+    for (let i = 0; i < obj.abilities.length; i++) {
+        ability += obj.abilities[i].ability.name;
+        if (i < obj.abilities.length - 1) {
+            ability += ", ";
+        }
+    }
+    let move = "Moves: "
+    for (let i = 0; i < obj.moves.length; i++) {
+        move += obj.moves[i].move.name;
+        if (i < obj.moves.length - 1) {
+            move += ", ";
+        }
+    }
+    let stat = "Base Stats: "
+    for (let i = 0; i < obj.stats.length; i++) {
+        stat += obj.stats[i].stat.name + ": " + obj.stats[i].base_stat;
+        if (i < obj.stats.length - 1) {
+            stat += ", ";
+        }
+    }
+    let text2 = document.createTextNode(type);
+    let text3 = document.createTextNode(ability);
+    let text4 = document.createTextNode(move);
+    let text5 = document.createTextNode(stat);
     head.appendChild(text1);
     body.appendChild(text2);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text3);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text4);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text5);
     section.appendChild(image);
     section.appendChild(head);
     section.appendChild(body);
