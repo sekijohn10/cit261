@@ -114,13 +114,13 @@ function addMove(obj) {
     let head = document.createElement("h4");
     let body = document.createElement("p");
     let section = document.createElement("div");
-    let nameID = obj.name.name + " id: " + obj.id;
+    let nameID = obj.names[2].name + " id: " + obj.id;
     let text1 = document.createTextNode(nameID);
     let stat = "Power: " + obj.power + " Accuracy: " + obj.accuracy + " PP: " + obj.pp;
-    let type = "Damage type: " + obj.type.name + " Damage class: " + obj.damage_class +
-        " Contest type: " + obj.contest_type;
-    let effect = "Effect: " + obj.effect_entries.short_effect;
-    let flavor = "Flavor Text: " + obj.flavor_text_entries.flavor_text;
+    let type = "Damage type: " + obj.type.name + " Damage class: " + obj.damage_class.name +
+        " Contest type: " + obj.contest_type.name;
+    let effect = "Effect: " + obj.effect_entries[0].short_effect;
+    let flavor = "Flavor Text: " + obj.flavor_text_entries[2].flavor_text;
     let text2 = document.createTextNode(stat);
     let text3 = document.createTextNode(type);
     let text4 = document.createTextNode(effect);
