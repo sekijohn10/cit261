@@ -46,7 +46,7 @@ function getQuery() {
         }
         else if (this.readyState == 4 && this.status != 200) {
             document.getElementById("error").innerHTML = "Invalid " + document.getElementById("queryTopic").value +
-                " inquery " + this.statusText + " make sure to use all lowercase";
+                " try a new inquery";
         }
     };
     xmlhttp.open("GET", url + queryType + searchItem, true)
@@ -122,9 +122,9 @@ function addPokemon(obj) {
     body.appendChild(document.createElement("br"));
     body.appendChild(text3);
     body.appendChild(document.createElement("br"));
-    body.appendChild(text4);
-    body.appendChild(document.createElement("br"));
     body.appendChild(text5);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text4);
     section.appendChild(image);
     section.appendChild(head);
     section.appendChild(body);
