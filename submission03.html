@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="col-s-12">
-            <p class="item2" id="item2" onclick="startPauseAnimation()">Click me!</p><span id="it2"></span>
+            <p class="item2" id="item2" onclick="startPauseAnimation()" ontouchstart="startPauseAnimation()">Click me!</p><span id="it2"></span>
         </div>
     </div>
     <div class="row">
@@ -27,11 +27,11 @@
     </div>
     <script>
         let el = document.getElementById("item1");
-        el.addEventListener("transitionend", it1Ended, true);
-        el.addEventListener("transitionstart", it1Started, true);
+        el.addEventListener("transitionend", it1Ended, false);
+        el.addEventListener("transitionstart", it1Started, false);
         el = document.getElementById("item2");
-        el.addEventListener("animationiteration", it2Count, true);
-        el.addEventListener("animationstart", it2Started, true);
+        el.addEventListener("animationiteration", it2Count, false);
+        el.addEventListener("animationstart", it2Started, false);
     </script>
 </body>
 </html>
