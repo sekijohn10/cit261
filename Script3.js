@@ -28,10 +28,10 @@ function it2Started() {
 
 function startPauseAnimation() {
     let el = document.getElementById("item2");
-    if (el.style.animationPlayState == "paused") {
-        el.style.animationPlayState = "running";
+    if (el.style.animationPlayState == "running") {
+        el.style.animationPlayState = "paused";
     }
     else {
-        el.style.animationPlayState = "paused";
+        el.style.animationPlayState = "running";
     }
 }
