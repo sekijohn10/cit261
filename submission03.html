@@ -10,14 +10,15 @@
 </head>
 <body>
     <div>
-        <p class="item1" id="item1">Hover over me!</p>
+        <p class="item1" id="item1">Hover over me!</p><span id="it1"></span>
     </div>
     <div>
-        <p class="item2" id="item2">Hover over me!</p>
+        <p class="item2" id="item2" onmouseover="startAnimation()">Hover over me!</p><span id="it2"></span>
     </div>
     <script>
         let el = document.getElementById("item1");
         el.addEventListener("transitionend", it1Ended, true);
+        el.addEventListener("transitionstart", it1Started, true);
         el = document.getElementById("item2");
         el.addEventListener("animationend", it2Ended, true);
         el.addEventListener("animationstart", it2Started, true);
