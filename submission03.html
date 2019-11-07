@@ -9,15 +9,18 @@
     <link rel="stylesheet" type="text/css" href="StyleSheet2.css" />
 </head>
 <body>
-    <div class="col-4 col-s-6">
-        <p class="item1" id="item1">Hover over me!</p>
+    <div class="row">
+        <div class="col-4 col-s-6">
+            <p class="item1" id="item1">Hover over me!</p>
+        </div>
+        <div class="col-8 col-s-6">
+            <p id="it1"></p>
+        </div>
     </div>
-    <div class="col-8 col-s-6">
-        <p id="it1"></p>
-    </div>
-
-    <div>
-        <p class="item2" id="item2" onmouseover="startAnimation()">Hover over me!</p><span id="it2"></span>
+    <div class="row">
+        <div>
+            <p class="item2" id="item2" onmouseover="startAnimation()">Hover over me!</p><span id="it2"></span>
+        </div>
     </div>
     <script>
         let el = document.getElementById("item1");

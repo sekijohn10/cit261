@@ -31,6 +31,12 @@
 
 }
 
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 /* For mobile phones: */
 [class*="col-"] {
     width: 100%;
