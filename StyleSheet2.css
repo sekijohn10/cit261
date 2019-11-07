@@ -31,10 +31,45 @@
     height: 100px;
     color: black;
     padding: 20px;
+    animation-duration: 4s;
+    animation-name: slidein;
+    animation-play-state: paused;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 0%;
+        width: 100px;
+        background-color: #00ff00;
+    }
+
+    to {
+        margin-left: 100%;
+        width: 200px;
+        background-color: #0000ff;
+    }
 }
 
 .item3 {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: #0f000f;
+    width: 100px;
+    height: 100px;
+    color: aqua;
+    padding: 20px;
+    transition: transform 3s, background-color 3s, color 3s, transform-origin 3s;
+}
 
+.item3:hover {
+    transform:skew(30deg);
+    transform-origin:40%20%;
+    background-color:chocolate;
+    color:antiquewhite;
 }
 
 .row:after {
