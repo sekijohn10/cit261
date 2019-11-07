@@ -9,5 +9,18 @@
     <link rel="stylesheet" type="text/css" href="StyleSheet2.css" />
 </head>
 <body>
+    <div>
+        <p class="item1" id="item1">Hover over me!</p>
+    </div>
+    <div>
+        <p class="item2" id="item2">Hover over me!</p>
+    </div>
+    <script>
+        let el = document.getElementById("item1");
+        el.addEventListener("transitionend", it1Ended, true);
+        el = document.getElementById("item2");
+        el.addEventListener("animationend", it2Ended, true);
+        el.addEventListener("animationstart", it2Started, true);
+    </script>
 </body>
 </html>
