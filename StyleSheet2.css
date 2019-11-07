@@ -6,7 +6,6 @@
     border-style:solid;
     border-width: 1px;
     border-radius: 5px;
-    display: block;
     background-color: #ff0000;
     width: 100px;
     height: 100px;
@@ -24,7 +23,14 @@
 }
 
 .item2 {
-
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: #00ff00;
+    width: 100px;
+    height: 100px;
+    color: black;
+    padding: 20px;
 }
 
 .item3 {
