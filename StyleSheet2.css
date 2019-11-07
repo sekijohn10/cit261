@@ -67,7 +67,7 @@
 
 .item3:hover {
     transform:skew(30deg);
-    transform-origin:40%20%;
+    transform-origin:40% 20%;
     background-color:chocolate;
     color:antiquewhite;
 }
