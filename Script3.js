@@ -3,27 +3,37 @@ let count = 0;
 function it1Ended() {
     let el = document.getElementById("it1");
     el.innerHTML = "Transition has Ended";
-    el.style.color = "red";
+    el.classList.add("transition2");
+    if (el.classList.contains("transition1"))
+        el.classList.remove("transition1");
 }
 
 function it1Started() {
     let el = document.getElementById("it1");
     el.innerHTML = "Transition has Started";
-    el.style.color = "blue";
+    el.classList.add("transition1");
+    if (el.classList.contains("transition2"))
+        el.classList.remove("transition2");
 }
 
 function it2Count() {
     let el = document.getElementById("it2");
     el.innerHTML = "Animation count is " + ++count;
-    el.style.fontFamily = "cursive";
-    el.style.color = "brown";
+    if (el.classList.contains("animation1")) {
+        el.classList.add("animation2");
+        el.classList.remove("animation1");
+    }
+    else {
+        el.classList.add("animation1");
+        el.classList.remove("animation2");
+    }
+
 }
 
 function it2Started() {
     let el = document.getElementById("it2");
     el.innerHTML = "Animation has Started";
-    el.style.fontFamily = "sans-serif";
-    el.style.color = "green";
+    el.classList.add("animation1");
 }
 
 function startPauseAnimation() {

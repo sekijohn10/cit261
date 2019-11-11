@@ -1,5 +1,49 @@
-﻿body
+﻿* {
+    box-sizing: border-box;
+}
+
+body
 {
+}
+
+.transition1 {
+    color: blue;
+    transition: color 2s;
+}
+
+.transition2 {
+    color: red;
+    transition: color 2s;
+}
+
+.animation1 {
+    color: green;
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    animation-duration: 4s;
+    animation-name: bounce;
+    animation-play-state: running;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.animation2 {
+    color: brown;
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    animation-duration: 4s;
+    animation-name: wiggle;
+    animation-play-state: running;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
 }
 
 .item1 {
@@ -50,6 +94,59 @@
         margin-left: 100%;
         width: 200px;
         background-color: #0000ff;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-30px);
+    }
+    10%, 30%, 50%, 70% {
+        transform: translateY(0);
+    }
+
+    100% {
+        color:brown;
+        transform: translateY(0);
+    }
+
+    20% {
+        transform: translateY(-20px);
+    }
+
+    40% {
+        transform: translateY(-15px);
+    } 
+
+    60% {
+        transform: translateY(-7px);
+    }
+}
+
+@keyframes wiggle {
+    10% {
+        transform: translateX(20px);
+    }
+
+    0%, 20%, 40%, 60%, 80% {
+        transform: translateX(0);
+    }
+
+    100% {
+        color: green;
+        transform: translateX(0);
+    }
+
+    30% {
+        transform: translateX(20px);
+    }
+
+    50% {
+        transform: translateX(15px);
+    }
+
+    70% {
+        transform: translateX(7px);
     }
 }
 
