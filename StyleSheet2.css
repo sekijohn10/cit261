@@ -8,12 +8,12 @@ body
 
 .transition1 {
     color: blue;
-    transition: color 2s;
+    transition: color 1s;
 }
 
 .transition2 {
     color: red;
-    transition: color 2s;
+    transition: color 1s;
 }
 
 .animation1 {
