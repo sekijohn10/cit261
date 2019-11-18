@@ -324,7 +324,7 @@ function addMove(obj, inPokedata = true) {
         effectText = "Effect: " + obj.effect_entries[0].short_effect;
         flavor = obj.flavor_text_entries[2].flavor_text;
         flavorText = "Flavor text: " + obj.flavor_text_entries[2].flavor_text;
-        pokedata.Move[name] = new Move(name, id, stats, dType, cType, dClass, effect, flavor);
+        pokedata.move[name] = new Move(name, id, stats, dType, cType, dClass, effect, flavor);
     }
     else {
         nameID = obj.name + " id: " + obj.id;
