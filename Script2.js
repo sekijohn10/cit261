@@ -159,7 +159,7 @@ function addPokemon(obj, inPokedata = true) {
         stats = [];
         nameID = obj.forms[0].name.charAt(0).toUpperCase() + obj.forms[0].name.slice(1) + " id: " +
             obj.game_indices[0].game_index;
-        name = obj.forms[0].name.charAt(0).toUpperCase() + obj.forms[0].name.slice(1);
+        name = obj.forms[0].name;
         id = obj.game_indices[0].game_index;
         imageSRC = obj.sprites.front_default;
         image.src = obj.sprites.front_default;
