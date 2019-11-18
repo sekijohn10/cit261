@@ -1,5 +1,5 @@
 let pokedata;
-if (localStorage.getItem("pokedata")) {
+if (window.localStorage.getItem("pokedata")) {
     pokedata = JSON.parse(window.localStorage.getItem("pokedata"));
 }
 else {
