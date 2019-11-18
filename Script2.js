@@ -165,7 +165,7 @@ function addPokemon(obj, inPokedata = true) {
         image.src = obj.sprites.front_default;
         typeText = "Type: ";
         for (let i = 0; i < obj.types.length; i++) {
-            types.add(obj.types[i].type.name);
+            types.push(obj.types[i].type.name);
             typeText += obj.types[i].type.name;
             if (i < obj.types.length - 2) {
                 typeText += ", ";
@@ -181,7 +181,7 @@ function addPokemon(obj, inPokedata = true) {
         }
         abilityText = "Abilities: ";
         for (let i = 0; i < obj.abilities.length; i++) {
-            abilities.add(obj.abilities[i].ability.name);
+            abilities.push(obj.abilities[i].ability.name);
             abilityText += obj.abilities[i].ability.name;
             if (i < obj.abilities.length - 2) {
                 abilityText += ", ";
@@ -197,7 +197,7 @@ function addPokemon(obj, inPokedata = true) {
         }
         moveText = "Moves: "
         for (let i = 0; i < obj.moves.length; i++) {
-            moves.add(obj.moves[i].move.name);
+            moves.push(obj.moves[i].move.name);
             moveText += obj.moves[i].move.name;
             if (i < obj.moves.length - 2) {
                 moveText += ", ";
@@ -370,7 +370,7 @@ function addAbility(obj, inPokedata = true) {
         flavorText = "Flavor text: " + obj.flavor_text_entries[2].flavor_text;
         pokemonText = "Pok\u00E9mon that can have this ability: ";
         for (let i = 0; i < obj.pokemon.length; i++) {
-            pokemon.add(obj.pokemon[i].pokemon.name);
+            pokemon.push(obj.pokemon[i].pokemon.name);
             pokemonText += obj.pokemon[i].pokemon.name;
             if (i < obj.pokemon.length - 2) {
                 pokemonText += ", ";
@@ -428,7 +428,7 @@ function addType(obj, inPokedata = true) {
         nameID = obj.names[6].name + " id: " + obj.id;
         let moves = [];
         for (let i = 0; i < obj.moves.length; i++) {
-            moves.add(obj.moves[i].name);
+            moves.push(obj.moves[i].name);
             moveText += obj.moves[i].name;
             if (i < obj.moves.length - 2) {
                 moveText += ", ";
@@ -439,7 +439,7 @@ function addType(obj, inPokedata = true) {
         }
         let pokemon = [];
         for (let i = 0; i < obj.pokemon.length; i++) {
-            pokemon.add(obj.pokemon[i].pokemon.name);
+            pokemon.push(obj.pokemon[i].pokemon.name);
             pokemonText += obj.pokemon[i].pokemon.name;
             if (i < obj.pokemon.length - 2) {
                 pokemonText += ", ";
