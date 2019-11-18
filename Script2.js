@@ -1,3 +1,56 @@
+let pokedata;
+if (localStorage.getItem("pokedata")) {
+    pokedata = JSON.parse(window.localStorage.getItem("pokedata"));
+}
+else {
+    pokedata = {
+        pokemon: {},
+        move: {},
+        ability: {},
+        type: {}
+    }
+}
+
+function Pokemon(name, id, image, types, abilities, moves, stats) {
+    this.name = name;
+    this.id = id;
+    this.image = image;
+    this.types = types;
+    this.abilities = abilities;
+    this.moves = moves;
+    this.stats = stats;
+}
+
+function Move(name, id, stats, dType, cType, dClass, effect, flavor) {
+    this.name = name;
+    this.id = id;
+    this.stats = stats;
+    this.dType = dType;
+    this.cType = cType;
+    this.dClass = dClass;
+    this.effect = effect;
+    this.flavor = flavor;
+}
+
+function Ability(name, id, effect, flavor, pokemon) {
+    this.name = name;
+    this.id = id;
+    this.effect = effect;
+    this.flavor = flavor;
+    this.pokemon = pokemon;
+}
+
+function Type(name, id, moves, pokemon) {
+    this.name = name;
+    this.id = id;
+    this.moves = moves;
+    this.pokemon = pokemon;
+}
+
+function saveData() {
+    window.localStorage.setItem("pokedata", JSON.stringify(pokedata));
+}
+
 function updateQuery() {
     let topic = document.getElementById("queryTopic").value;
     if (topic == "pokemon") {
@@ -21,6 +74,44 @@ function clearPage() {
 }
 
 function getQuery() {
+    let queryType = document.getElementById("queryTopic").value;
+    let searchItem = document.getElementById("queryText").value.toLowerCase();
+
+    if (queryType == "pokemon") {
+        if (pokedata.pokemon.hasOwnProperty(searchItem)) {
+            addPokemon(pokedata.pokemon[searchItem]);
+        }
+        else {
+            checkOnline();
+        }
+    }
+    else if (queryType == "move") {
+        if (pokedata.move.hasOwnProperty(searchItem)) {
+            addPokemon(pokedata.move[searchItem]);
+        }
+        else {
+            checkOnline();
+        }
+    }
+    else if (queryType == "ability") {
+        if (pokedata.ability.hasOwnProperty(searchItem)) {
+            addPokemon(pokedata.ability[searchItem]);
+        }
+        else {
+            checkOnline();
+        }
+    }
+    else {
+        if (pokedata.type.hasOwnProperty(searchItem)) {
+            addType(pokedata.type[searchItem]);
+        }
+        else {
+            checkOnline();
+        }
+    }
+}
+
+function checkOnline() {
     let url = "https://pokeapi.co/api/v2/";
     let queryType = document.getElementById("queryTopic").value + "/";
     let searchItem = document.getElementById("queryText").value.toLowerCase() + "/";
@@ -31,16 +122,16 @@ function getQuery() {
             let json = this.responseText;
             let obj = JSON.parse(json);
             if (queryType == "pokemon/") {
-                addPokemon(obj);
+                addPokemon(obj, false);
             }
             else if (queryType == "move/") {
-                addMove(obj);
+                addMove(obj, false);
             }
             else if (queryType == "ability/") {
-                addAbility(obj);
+                addAbility(obj, false);
             }
             else {
-                addType(obj);
+                addType(obj, false);
             }
             document.getElementById("error").innerHTML = "";
         }
@@ -53,70 +144,138 @@ function getQuery() {
     xmlhttp.send();
 }
 
-function addPokemon(obj) {
+function addPokemon(obj, inPokedata = true) {
     let element = document.getElementById("results");
     let head = document.createElement("h4");
     let body = document.createElement("p");
     let section = document.createElement("div");
-    let nameID = obj.forms[0].name.charAt(0).toUpperCase() + obj.forms[0].name.slice(1) + " id: " +
-        obj.game_indices[0].game_index;
-    let text1 = document.createTextNode(nameID);
     let image = document.createElement("img");
-    image.src = obj.sprites.front_default;
-    let type = "Type: ";
-    for (let i = 0; i < obj.types.length; i++) {
-        type += obj.types[i].type.name;
-        if (i < obj.types.length - 2) {
-            type += ", ";
-        }
-        else if (i < obj.types.length - 1) {
-            if (obj.types.length > 2) {
-                type += ", and ";
+    let nameID, typeText, abilityText, moveText, statText;
+    if (!inPokedata) {
+        let name, id, types, imageSRC, abilities, moves, stats;
+        nameID = obj.forms[0].name.charAt(0).toUpperCase() + obj.forms[0].name.slice(1) + " id: " +
+            obj.game_indices[0].game_index;
+        name = obj.forms[0].name.charAt(0).toUpperCase() + obj.forms[0].name.slice(1);
+        id = obj.game_indices[0].game_index;
+        imageSRC = obj.sprites.front_default;
+        image.src = obj.sprites.front_default;
+        typeText = "Type: ";
+        for (let i = 0; i < obj.types.length; i++) {
+            types.add(obj.types[i].type.name);
+            typeText += obj.types[i].type.name;
+            if (i < obj.types.length - 2) {
+                typeText += ", ";
             }
-            else {
-                type += " and ";
+            else if (i < obj.types.length - 1) {
+                if (obj.types.length > 2) {
+                    typeText += ", and ";
+                }
+                else {
+                    typeText += " and ";
+                }
+            }
+        }
+        abilityText = "Abilities: ";
+        for (let i = 0; i < obj.abilities.length; i++) {
+            abilities.add(obj.abilities[i].ability.name);
+            abilityText += obj.abilities[i].ability.name;
+            if (i < obj.abilities.length - 2) {
+                abilityText += ", ";
+            }
+            else if (i < obj.abilities.length - 1) {
+                if (obj.abilities.length > 2) {
+                    abilityText += ", and ";
+                }
+                else {
+                    abilityText += " and ";
+                }
+            }
+        }
+        moveText = "Moves: "
+        for (let i = 0; i < obj.moves.length; i++) {
+            moves.add(obj.moves[i].move.name);
+            moveText += obj.moves[i].move.name;
+            if (i < obj.moves.length - 2) {
+                moveText += ", ";
+            }
+            else if (i < obj.moves.length - 1) {
+                moveText += ", and ";
+            }
+        }
+        statText = "Base Stats: "
+        for (let i = 0; i < obj.stats.length; i++) {
+            stats[i].name = obj.stats[i].stat.name;
+            stats[i].base = obj.stats[i].base_stat;
+            statText += obj.stats[i].stat.name + ": " + obj.stats[i].base_stat;
+            if (i < obj.stats.length - 2) {
+                statText += ", ";
+            }
+            else if (i < obj.stats.length - 1) {
+                statText += ", and ";
+            }
+        }
+        pokedata.pokemon[name] = new Pokemon(name, id, imageSRC, types, abilities, moves, stats);
+    }
+    else {
+        nameID = obj.name.charAt(0).toUpperCase() + obj.name.slice(1) + " id: " +
+            obj.id;
+        image.src = obj.image;
+        typeText = "Type: ";
+        for (let i = 0; i < obj.types.length; i++) {
+            typeText += obj.types[i];
+            if (i < obj.types.length - 2) {
+                typeText += ", ";
+            }
+            else if (i < obj.types.length - 1) {
+                if (obj.types.length > 2) {
+                    typeText += ", and ";
+                }
+                else {
+                    typeText += " and ";
+                }
+            }
+        }
+        abilityText = "Abilities: ";
+        for (let i = 0; i < obj.abilities.length; i++) {
+            abilityText += obj.abilities[i];
+            if (i < obj.abilities.length - 2) {
+                abilityText += ", ";
+            }
+            else if (i < obj.abilities.length - 1) {
+                if (obj.abilities.length > 2) {
+                    abilityText += ", and ";
+                }
+                else {
+                    abilityText += " and ";
+                }
+            }
+        }
+        moveText = "Moves: "
+        for (let i = 0; i < obj.moves.length; i++) {
+            moveText += obj.moves[i];
+            if (i < obj.moves.length - 2) {
+                moveText += ", ";
+            }
+            else if (i < obj.moves.length - 1) {
+                moveText += ", and ";
+            }
+        }
+        statText = "Base Stats: "
+        for (let i = 0; i < obj.stats.length; i++) {
+            statText += obj.stats[i].name + ": " + obj.stats[i].base;
+            if (i < obj.stats.length - 2) {
+                statText += ", ";
+            }
+            else if (i < obj.stats.length - 1) {
+                statText += ", and ";
             }
         }
     }
-    let ability = "Abilities: ";
-    for (let i = 0; i < obj.abilities.length; i++) {
-        ability += obj.abilities[i].ability.name;
-        if (i < obj.abilities.length - 2) {
-            ability += ", ";
-        }
-        else if (i < obj.abilities.length - 1) {
-            if (obj.abilities.length > 2) {
-                ability += ", and ";
-            }
-            else {
-                ability += " and ";
-            }
-        }
-    }
-    let move = "Moves: "
-    for (let i = 0; i < obj.moves.length; i++) {
-        move += obj.moves[i].move.name;
-        if (i < obj.moves.length - 2) {
-            move += ", ";
-        }
-        else if (i < obj.moves.length - 1) {
-            move += ", and ";
-        }
-    }
-    let stat = "Base Stats: "
-    for (let i = 0; i < obj.stats.length; i++) {
-        stat += obj.stats[i].stat.name + ": " + obj.stats[i].base_stat;
-        if (i < obj.stats.length - 2) {
-            stat += ", ";
-        }
-        else if (i < obj.stats.length - 1) {
-            stat += ", and ";
-        }
-    }
-    let text2 = document.createTextNode(type);
-    let text3 = document.createTextNode(ability);
-    let text4 = document.createTextNode(move);
-    let text5 = document.createTextNode(stat);
+    let text1 = document.createTextNode(nameID);
+    let text2 = document.createTextNode(typeText);
+    let text3 = document.createTextNode(abilityText);
+    let text4 = document.createTextNode(moveText);
+    let text5 = document.createTextNode(statText);
     head.appendChild(text1);
     body.appendChild(text2);
     body.appendChild(document.createElement("br"));
@@ -129,24 +288,50 @@ function addPokemon(obj) {
     section.appendChild(head);
     section.appendChild(body);
     element.insertBefore(section, element.childNodes[0]);
+    if (!inPokedata) {
+        saveData();
+    }
 }
 
-function addMove(obj) {
+function addMove(obj, inPokedata = true) {
     let element = document.getElementById("results");
     let head = document.createElement("h4");
     let body = document.createElement("p");
     let section = document.createElement("div");
-    let nameID = obj.names[2].name + " id: " + obj.id;
+    let nameID, statText, typeText, effectText, flavorText;
+    if (!inPokedata) {
+        let name, id, stats, dType, dClass, cType, effect, flavor;
+        name = obj.names[2].name;
+        id = obj.id;
+        nameID = obj.names[2].name + " id: " + obj.id;
+        stats.power = obj.power;
+        stats.accuracy = obj.accuracy;
+        stats.pp = obj.pp;
+        statText = "Power: " + obj.power + ", Accuracy: " + obj.accuracy + ", PP: " + obj.pp;
+        dType = obj.type.name;
+        dClass = obj.damage_class.name;
+        cType = obj.contest_type.name;
+        typeText = "Damage type: " + obj.type.name + ", Damage class: " + obj.damage_class.name +
+            ", Contest type: " + obj.contest_type.name;
+        effect = obj.effect_entries[0].short_effect;
+        effectText = "Effect: " + obj.effect_entries[0].short_effect;
+        flavor = obj.flavor_text_entries[2].flavor_text;
+        flavorText = "Flavor text: " + obj.flavor_text_entries[2].flavor_text;
+        pokedata.Move[name] = new Move(name, id, stats, dType, cType, dClass, effect, flavor);
+    }
+    else {
+        nameID = obj.name + " id: " + obj.id;
+        statText = "Power: " + obj.stats.power + ", Accuracy: " + obj.stats.accuracy + ", PP: " + obj.stats.pp;
+        typeText = "Damage type: " + obj.dType + ", Damage class: " + obj.dClass +
+            ", Contest type: " + obj.cType;
+        effectText = "Effect: " + obj.effect;
+        flavorText = "Flavor text: " + obj.flavor;
+    }
     let text1 = document.createTextNode(nameID);
-    let stat = "Power: " + obj.power + ", Accuracy: " + obj.accuracy + ", PP: " + obj.pp;
-    let type = "Damage type: " + obj.type.name + ", Damage class: " + obj.damage_class.name +
-        ", Contest type: " + obj.contest_type.name;
-    let effect = "Effect: " + obj.effect_entries[0].short_effect;
-    let flavor = "Flavor text: " + obj.flavor_text_entries[2].flavor_text;
-    let text2 = document.createTextNode(stat);
-    let text3 = document.createTextNode(type);
-    let text4 = document.createTextNode(effect);
-    let text5 = document.createTextNode(flavor);
+    let text2 = document.createTextNode(statText);
+    let text3 = document.createTextNode(typeText);
+    let text4 = document.createTextNode(effectText);
+    let text5 = document.createTextNode(flavorText);
     head.appendChild(text1);
     body.appendChild(text2);
     body.appendChild(document.createElement("br"));
@@ -158,30 +343,58 @@ function addMove(obj) {
     section.appendChild(head);
     section.appendChild(body);
     element.insertBefore(section, element.childNodes[0]);
+    if (!inPokedata) {
+        saveData();
+    }
 }
 
-function addAbility(obj) {
+function addAbility(obj, inPokedata = true) {
     let element = document.getElementById("results");
     let head = document.createElement("h4");
     let body = document.createElement("p");
     let section = document.createElement("div");
-    let nameID = obj.names[2].name + " id: " + obj.id;
-    let text1 = document.createTextNode(nameID);
-    let effect = "Effect: " + obj.effect_entries[0].short_effect;
-    let flavor = "Flavor text: " + obj.flavor_text_entries[2].flavor_text;
-    let pokemon = "Pok\u00E9mon that can have this ability: ";
-    for (let i = 0; i < obj.pokemon.length; i++) {
-        pokemon += obj.pokemon[i].pokemon.name;
-        if (i < obj.pokemon.length - 2) {
-            pokemon += ", ";
+    let nameID, effectText, flavorText, pokemonText;
+    if (!inPokedata) {
+        let name, id, pokemon, effect, flavor;
+        name = obj.names[2].name;
+        id = obj.id;
+        effect = obj.effect_entries[0].short_effect;
+        flavor = obj.flavor_text_entries[2].flavor_text;
+        nameID = obj.names[2].name + " id: " + obj.id;
+        effectText = "Effect: " + obj.effect_entries[0].short_effect;
+        flavorText = "Flavor text: " + obj.flavor_text_entries[2].flavor_text;
+        pokemonText = "Pok\u00E9mon that can have this ability: ";
+        for (let i = 0; i < obj.pokemon.length; i++) {
+            pokemon.add(obj.pokemon[i].pokemon.name);
+            pokemonText += obj.pokemon[i].pokemon.name;
+            if (i < obj.pokemon.length - 2) {
+                pokemonText += ", ";
+            }
+            else if (i < obj.pokemon.length - 1) {
+                pokemonText += ", and ";
+            }
         }
-        else if (i < obj.pokemon.length - 1) {
-            pokemon += ", and ";
+        pokedata.ability[name] = new Ability(name, id, effect, flavor, pokemon);
+    }
+    else {
+        nameID = obj.name + " id: " + obj.id;
+        effectText = "Effect: " + obj.effect;
+        flavorText = "Flavor text: " + obj.flavor;
+        pokemonText = "Pok\u00E9mon that can have this ability: ";
+        for (let i = 0; i < obj.pokemon.length; i++) {
+            pokemonText += obj.pokemon[i];
+            if (i < obj.pokemon.length - 2) {
+                pokemonText += ", ";
+            }
+            else if (i < obj.pokemon.length - 1) {
+                pokemonText += ", and ";
+            }
         }
     }
-    let text2 = document.createTextNode(effect);
-    let text3 = document.createTextNode(flavor);
-    let text4 = document.createTextNode(pokemon);
+    let text1 = document.createTextNode(nameID);
+    let text2 = document.createTextNode(effectText);
+    let text3 = document.createTextNode(flavorText);
+    let text4 = document.createTextNode(pokemonText);
     head.appendChild(text1);
     body.appendChild(text2);
     body.appendChild(document.createElement("br"));
@@ -191,37 +404,72 @@ function addAbility(obj) {
     section.appendChild(head);
     section.appendChild(body);
     element.insertBefore(section, element.childNodes[0]);
+    if (!inPokedata) {
+        saveData();
+    }
 }
 
-function addType(obj) {
+function addType(obj, inPokedata = true) {
     let element = document.getElementById("results");
     let head = document.createElement("h4");
     let body = document.createElement("p");
     let section = document.createElement("div");
-    let nameID = obj.names[6].name + " id: " + obj.id;
+    let moveText = "Moves that are this type: ";
+    let pokemonText = "Pok\u00E9mon that are this type: ";
+    let nameID;
+    if (!inPokedata) {
+        let name = obj.names[6].name;
+        let id = obj.id;
+        nameID = obj.names[6].name + " id: " + obj.id;
+        let moves = [];
+        for (let i = 0; i < obj.moves.length; i++) {
+            moves.add(obj.moves[i].name);
+            moveText += obj.moves[i].name;
+            if (i < obj.moves.length - 2) {
+                moveText += ", ";
+            }
+            else if (i < obj.moves.length - 1) {
+                moveText += ", and ";
+            }
+        }
+        let pokemon = [];
+        for (let i = 0; i < obj.pokemon.length; i++) {
+            pokemon.add(obj.pokemon[i].pokemon.name);
+            pokemonText += obj.pokemon[i].pokemon.name;
+            if (i < obj.pokemon.length - 2) {
+                pokemonText += ", ";
+            }
+            else if (i < obj.pokemon.length - 1) {
+                pokemonText += ", and ";
+            }
+        }
+        pokedata.type[name] = new Type(name, id, moves, pokemon);
+
+    }
+    else {
+        nameID = obj.name + " id: " + obj.id;
+        for (let i = 0; i < obj.moves.length; i++) {
+            moveText += obj.moves[i];
+            if (i < obj.moves.length - 2) {
+                moveText += ", ";
+            }
+            else if (i < obj.moves.length - 1) {
+                moveText += ", and ";
+            }
+        }
+        for (let i = 0; i < obj.pokemon.length; i++) {
+            pokemonText += obj.pokemon[i];
+            if (i < obj.pokemon.length - 2) {
+                pokemonText += ", ";
+            }
+            else if (i < obj.pokemon.length - 1) {
+                pokemonText += ", and ";
+            }
+        }
+    }
     let text1 = document.createTextNode(nameID);
-    let moves = "Moves that are this type: ";
-    for (let i = 0; i < obj.moves.length; i++) {
-        moves += obj.moves[i].name;
-        if (i < obj.moves.length - 2) {
-            moves += ", ";
-        }
-        else if (i < obj.moves.length - 1) {
-            moves += ", and ";
-        }
-    }
-    let pokemon = "Pokemon that are this type: ";
-    for (let i = 0; i < obj.pokemon.length; i++) {
-        pokemon += obj.pokemon[i].pokemon.name;
-        if (i < obj.pokemon.length - 2) {
-            pokemon += ", ";
-        }
-        else if (i < obj.pokemon.length - 1) {
-            pokemon += ", and ";
-        }
-    }
-    let text2 = document.createTextNode(moves);
-    let text3 = document.createTextNode(pokemon);
+    let text2 = document.createTextNode(moveText);
+    let text3 = document.createTextNode(pokemonText);
     head.appendChild(text1);
     body.appendChild(text2);
     body.appendChild(document.createElement("br"));
@@ -229,4 +477,7 @@ function addType(obj) {
     section.appendChild(head);
     section.appendChild(body);
     element.insertBefore(section, element.childNodes[0]);
+    if (!inPokedata) {
+        saveData();
+    }
 }
