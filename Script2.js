@@ -220,7 +220,7 @@ function addPokemon(obj, inPokedata = true) {
                 statText += ", and ";
             }
         }
-        pokedata.pokemon[name.toLowerCase] = new Pokemon(name, id, imageSRC, types, abilities, moves, stats);
+        pokedata.pokemon[name.toLowerCase()] = new Pokemon(name, id, imageSRC, types, abilities, moves, stats);
         pokedata.pokemon[id] = new Pokemon(name, id, imageSRC, types, abilities, moves, stats);
     }
     else {
@@ -325,7 +325,7 @@ function addMove(obj, inPokedata = true) {
         effectText = "Effect: " + obj.effect_entries[0].short_effect;
         flavor = obj.flavor_text_entries[2].flavor_text;
         flavorText = "Flavor text: " + obj.flavor_text_entries[2].flavor_text;
-        pokedata.move[name.toLowerCase] = new Move(name, id, stats, dType, cType, dClass, effect, flavor);
+        pokedata.move[name.toLowerCase()] = new Move(name, id, stats, dType, cType, dClass, effect, flavor);
         pokedata.move[id] = new Move(name, id, stats, dType, cType, dClass, effect, flavor);
     }
     else {
@@ -384,7 +384,7 @@ function addAbility(obj, inPokedata = true) {
                 pokemonText += ", and ";
             }
         }
-        pokedata.ability[name.toLowerCase] = new Ability(name, id, effect, flavor, pokemon);
+        pokedata.ability[name.toLowerCase()] = new Ability(name, id, effect, flavor, pokemon);
         pokedata.ability[id] = new Ability(name, id, effect, flavor, pokemon);
     }
     else {
@@ -454,7 +454,7 @@ function addType(obj, inPokedata = true) {
                 pokemonText += ", and ";
             }
         }
-        pokedata.type[name.toLowerCase] = new Type(name, id, moves, pokemon);
+        pokedata.type[name.toLowerCase()] = new Type(name, id, moves, pokemon);
         pokedata.type[id] = new Type(name, id, moves, pokemon);
 
     }
