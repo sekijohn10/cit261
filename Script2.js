@@ -153,6 +153,10 @@ function addPokemon(obj, inPokedata = true) {
     let nameID, typeText, abilityText, moveText, statText;
     if (!inPokedata) {
         let name, id, types, imageSRC, abilities, moves, stats;
+        types = [];
+        abilities = [];
+        moves = [];
+        stats = [];
         nameID = obj.forms[0].name.charAt(0).toUpperCase() + obj.forms[0].name.slice(1) + " id: " +
             obj.game_indices[0].game_index;
         name = obj.forms[0].name.charAt(0).toUpperCase() + obj.forms[0].name.slice(1);
@@ -356,6 +360,7 @@ function addAbility(obj, inPokedata = true) {
     let nameID, effectText, flavorText, pokemonText;
     if (!inPokedata) {
         let name, id, pokemon, effect, flavor;
+        pokemon = [];
         name = obj.names[2].name;
         id = obj.id;
         effect = obj.effect_entries[0].short_effect;
