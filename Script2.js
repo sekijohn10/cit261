@@ -307,12 +307,13 @@ function addMove(obj, inPokedata = true) {
     let nameID, statText, typeText, effectText, flavorText;
     if (!inPokedata) {
         let name, id, stats, dType, dClass, cType, effect, flavor;
+        stats = {};
         name = obj.names[2].name;
         id = obj.id;
         nameID = obj.names[2].name + " id: " + obj.id;
-        stats['power'] = obj.power;
-        stats['accuracy'] = obj.accuracy;
-        stats['pp'] = obj.pp;
+        stats.power = obj.power;
+        stats.accuracy = obj.accuracy;
+        stats.pp = obj.pp;
         statText = "Power: " + obj.power + ", Accuracy: " + obj.accuracy + ", PP: " + obj.pp;
         dType = obj.type.name;
         dClass = obj.damage_class.name;
