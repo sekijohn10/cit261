@@ -208,8 +208,10 @@ function addPokemon(obj, inPokedata = true) {
         }
         statText = "Base Stats: "
         for (let i = 0; i < obj.stats.length; i++) {
-            stats[i].name = obj.stats[i].stat.name;
-            stats[i].base = obj.stats[i].base_stat;
+            stats.push({
+                name: obj.stats[i].stat.name,
+                base: obj.stats[i].base_stat
+            });
             statText += obj.stats[i].stat.name + ": " + obj.stats[i].base_stat;
             if (i < obj.stats.length - 2) {
                 statText += ", ";
