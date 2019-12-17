@@ -10,26 +10,26 @@
 </head>
 <body>
     <div class="row">
-        <header>
+        <div class="col-s-3">
+            <nav class="menubar1">
+                <ul>
+                    <li><a href="pokeIndex.html" onmouseover="mouseInNav(0)" onmouseout="mouseOutNav(0)" id="nav0" class="hyper1">Home</a></li>
+                    <li><a href="pokedatabase.html" onmouseover="mouseInNav(1)" onmouseout="mouseOutNav(1)" id="nav1" class="hyper1">DataBase</a></li>
+                    <li><a href="pokeCreate.html" onmouseover="mouseInNav(2)" onmouseout="mouseOutNav(2)" id="nav2" class="hyper1">Build a Poke'mon</a></li>
+                </ul>
+            </nav>
+        </div>
+        <header class="col-s-9">
             Find your Pokémon info using the PokéAPI
         </header>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-s-9">
+            <div class="col-s-12">
                 <p>
                     You can search by Pokémon name or id. You can search Pokémon moves by name or id.
                     You can search Pokémon abilities by name or id. You can also search Pokémon types by name or id.
                 </p>
-            </div>
-            <div class="col-s-3">
-                <nav class="menubar1">
-                    <ul>
-                        <li><a href="pokeIndex.html" onmouseover="mouseInNav(0)" onmouseout="mouseOutNav(0)" id="nav0" class="hyper1">Home</a></li>
-                        <li><a href="pokedatabase.html" onmouseover="mouseInNav(1)" onmouseout="mouseOutNav(1)" id="nav1" class="hyper1">DataBase</a></li>
-                        <li><a href="pokeCreate.html" onmouseover="mouseInNav(2)" onmouseout="mouseOutNav(2)" id="nav2" class="hyper1">Build a Poke'mon</a></li>
-                    </ul>
-                </nav>
             </div>
         </div>
         <form id="searchCriteria">
