@@ -72,6 +72,37 @@ a:hover, a:active {
     background-color: darkblue;
 }
 
+.menubar1, .menubar2 {
+    padding: 20px; border:#105 1px dashed;
+}
+
+    .menubar1 > a {
+        font-size: 17px;
+        background: aqua;
+        margin-right: 8px;
+        text-decoration: none;
+        border-radius: 3px;
+        padding: 10px 20px;
+        color:aliceblue;
+        transition: background 0.3s linear, color 0.3s linear;
+        -moz-transition: background 0.3s linear, color 0.3s linear;
+        -o-transition: background 0.3s linear, color 0.3s linear;
+        -webkit-transition: background 0.3s linear, color 0.3s linear;
+    }
+    .menubar2 > a {
+        font-size: 17px;
+        margin-right: 8px;
+        text-decoration: none;
+        background: blue;
+        border-radius: 3px;
+        padding: 10px 20px;
+        color: gray;
+        transition: background 0.3s linear, color 0.3s linear;
+        -moz-transition: background 0.3s linear, color 0.3s linear;
+        -o-transition: background 0.3s linear, color 0.3s linear;
+        -webkit-transition: background 0.3s linear, color 0.3s linear;
+    }
+
 /* For mobile phones: */
 [class*="col-"] {
     width: 100%;
