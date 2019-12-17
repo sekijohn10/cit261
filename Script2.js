@@ -493,3 +493,11 @@ function addType(obj, inPokedata = true) {
         saveData();
     }
 }
+
+function mouseInNav(int) {
+    let elem = document.getElementById('nav' + int);
+}
+
+function mouseOutNav(int) {
+    let elem = ;
+}
