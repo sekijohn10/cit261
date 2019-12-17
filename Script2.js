@@ -496,8 +496,16 @@ function addType(obj, inPokedata = true) {
 
 function mouseInNav(int) {
     let elem = document.getElementById('nav' + int);
+    if (elem.classList.contains("hyper1")) {
+        elem.classList.add("hyper2");
+        elem.classList.remove("hyper1");
+    }
 }
 
 function mouseOutNav(int) {
-    let elem = ;
+    let elem = document.getElementById('nav' + int);
+    if (elem.classList.contains("hyper2")) {
+        elem.classList.add("hyper1");
+        elem.classList.remove("hyper2");
+    }
 }
