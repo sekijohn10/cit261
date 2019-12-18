@@ -524,6 +524,7 @@ function mouseOutNav(int) {
 }
 
 function fillCreations() {
+
     for (const obj in pokeCreations) {
         let element = document.getElementById("results2");
         let head = document.createElement("h4");
@@ -613,17 +614,17 @@ function fillSearches() {
         let image = document.createElement("img");
         let nameID, typeText, abilityText, moveText, statText;
 
-        nameID = obj.name.charAt(0).toUpperCase() + obj.name.slice(1) + " id: " +
+        nameID = pokedata.pokemon[obj].name.charAt(0).toUpperCase() + pokedata.pokemon[obj].name.slice(1) + " id: " +
             obj.id;
-        image.src = obj.image;
+        image.src = pokedata.pokemon[obj].image;
         typeText = "Type: ";
-        for (let i = 0; i < obj.types.length; i++) {
-            typeText += obj.types[i];
-            if (i < obj.types.length - 2) {
+        for (let i = 0; i < pokedata.pokemon[obj].types.length; i++) {
+            typeText += pokedata.pokemon[obj].types[i];
+            if (i < pokedata.pokemon[obj].types.length - 2) {
                 typeText += ", ";
             }
-            else if (i < obj.types.length - 1) {
-                if (obj.types.length > 2) {
+            else if (i < pokedata.pokemon[obj].types.length - 1) {
+                if (pokedata.pokemon[obj].types.length > 2) {
                     typeText += ", and ";
                 }
                 else {
@@ -632,13 +633,13 @@ function fillSearches() {
             }
         }
         abilityText = "Abilities: ";
-        for (let i = 0; i < obj.abilities.length; i++) {
-            abilityText += obj.abilities[i];
-            if (i < obj.abilities.length - 2) {
+        for (let i = 0; i < pokedata.pokemon[obj].abilities.length; i++) {
+            abilityText += pokedata.pokemon[obj].abilities[i];
+            if (i < pokedata.pokemon[obj].abilities.length - 2) {
                 abilityText += ", ";
             }
-            else if (i < obj.abilities.length - 1) {
-                if (obj.abilities.length > 2) {
+            else if (i < pokedata.pokemon[obj].abilities.length - 1) {
+                if (pokedata.pokemon[obj].abilities.length > 2) {
                     abilityText += ", and ";
                 }
                 else {
@@ -647,22 +648,22 @@ function fillSearches() {
             }
         }
         moveText = "Moves: "
-        for (let i = 0; i < obj.moves.length; i++) {
-            moveText += obj.moves[i];
-            if (i < obj.moves.length - 2) {
+        for (let i = 0; i < pokedata.pokemon[obj].moves.length; i++) {
+            moveText += pokedata.pokemon[obj].moves[i];
+            if (i < pokedata.pokemon[obj].moves.length - 2) {
                 moveText += ", ";
             }
-            else if (i < obj.moves.length - 1) {
+            else if (i < pokedata.pokemon[obj].moves.length - 1) {
                 moveText += ", and ";
             }
         }
         statText = "Base Stats: "
-        for (let i = 0; i < obj.stats.length; i++) {
-            statText += obj.stats[i].name + ": " + obj.stats[i].base;
-            if (i < obj.stats.length - 2) {
+        for (let i = 0; i < pokedata.pokemon[obj].stats.length; i++) {
+            statText += pokedata.pokemon[obj].stats[i].name + ": " + pokedata.pokemon[obj].stats[i].base;
+            if (i < pokedata.pokemon[obj].stats.length - 2) {
                 statText += ", ";
             }
-            else if (i < obj.stats.length - 1) {
+            else if (i < pokedata.pokemon[obj].stats.length - 1) {
                 statText += ", and ";
             }
         }
