@@ -78,7 +78,7 @@ a:hover, a:active {
 
 a.hyper1 {
     font-size: 17px;
-    background: aqua;
+    background: tan;
     margin-right: 8px;
     margin-bottom: 5px;
     margin-top: 5px;
@@ -97,11 +97,11 @@ a.hyper2 {
     margin-right: 8px;
     text-decoration: none;
     margin-bottom: 5px;
-    background: blue;
+    background: #f2b25d;
     border-radius: 3px;
     margin-top: 5px;
     padding: 10px 20px;
-    color: gray;
+    color: #080858;
     -moz-transition: background 0.5s linear, color 0.5s linear;
     -o-transition: background 0.5s linear, color 0.5s linear;
     -webkit-transition: background 0.5s linear, color 0.5s linear;

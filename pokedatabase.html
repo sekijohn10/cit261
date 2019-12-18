@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="StyleSheet1.css" />
     <script src="Script2.js"></script>
     <meta charset="utf-8" />
-    <title>Poke'mon Info</title>
+    <title>Pokémon Info</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
@@ -14,7 +14,7 @@
             <nav class="menubar1">
                 <a href="pokeIndex.html" onmouseover="mouseInNav(0)" onmouseout="mouseOutNav(0)" id="nav0" class="hyper1">Home</a>
                 <a href="pokedatabase.html" onmouseover="mouseInNav(1)" onmouseout="mouseOutNav(1)" id="nav1" class="hyper1">DataBase</a>
-                <a href="pokeCreate.html" onmouseover="mouseInNav(2)" onmouseout="mouseOutNav(2)" id="nav2" class="hyper1">Build a Poke'mon</a>
+                <a href="pokeCreate.html" onmouseover="mouseInNav(2)" onmouseout="mouseOutNav(2)" id="nav2" class="hyper1">Build a Pokémon</a>
             </nav>
         </div>
         <header class="col-s-9">
@@ -59,10 +59,10 @@
                 <div class="col-s-3">
                 </div>
                 <div class="col-2 col-s-3">
-                    <button type="reset" id="clear" name="clear" onclick="clearPage()">Clear all</button>
+                    <button type="button" id="search" name="search" onclick="getQuery()">Get Info</button>
                 </div>
                 <div class="col-7 col-s-6">
-                    <button type="button" id="search" name="search" onclick="getQuery()">Get Info</button>
+                    <button type="reset" id="clear" name="clear" onclick="clearPage()">Clear all</button>
                 </div>
             </div>
         </form>

@@ -1,24 +1,51 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Unofficial Poke'mon Fansite</title>
+    <title>Unofficial Pokémon Fansite</title>
     <link rel="stylesheet" type="text/css" href="StyleSheet1.css" />
     <script src="Script2.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
     <div class="row">
         <div class="col-s-3">
             <nav class="menubar1">
-                <ul>
-                    <li><a href="pokeIndex.html" onmouseover="mouseInNav(0)" onmouseout="mouseOutNav(0)" id="nav0" class="hyper1">Home</a></li>
-                    <li><a href="pokedatabase.html" onmouseover="mouseInNav(1)" onmouseout="mouseOutNav(1)" id="nav1" class="hyper1">DataBase</a></li>
-                    <li><a href="pokeCreate.html" onmouseover="mouseInNav(2)" onmouseout="mouseOutNav(2)" id="nav2" class="hyper1">Build a Poke'mon</a></li>
-                </ul>
+                <a href="pokeIndex.html" onmouseover="mouseInNav(0)" onmouseout="mouseOutNav(0)" id="nav0" class="hyper1">Home</a>
+                <a href="pokedatabase.html" onmouseover="mouseInNav(1)" onmouseout="mouseOutNav(1)" id="nav1" class="hyper1">DataBase</a>
+                <a href="pokeCreate.html" onmouseover="mouseInNav(2)" onmouseout="mouseOutNav(2)" id="nav2" class="hyper1">Build a Pokémon</a>
             </nav>
         </div>
+        <header class="col-s-9">
+            Welcome to our Pokémon fan site!
+        </header>
     </div>
-
+    <div class="row">
+        <div class="container col-s-6">
+            <div class="col-s-12">
+                This section contains all previously built Pokémon. To help fill it, click on Build a Pokémon up top.
+            </div>
+            <div class="container2">
+                <div id="results2">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container col-s-6">
+            <div class="col-s-12">
+                This section contains all previously searched Pokémon. To help fill it, click on DataBase up top.
+            </div>
+            <div class="container2">
+                <div id="results3">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        fillCreations();
+        fillSearches();
+    </script>
 </body>
 </html>

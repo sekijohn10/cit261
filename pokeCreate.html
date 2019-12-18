@@ -3,15 +3,157 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Create a Poke'mon</title>
+    <title>Create a Pokémon</title>
 </head>
 <body>
-    <h1>Create your own Poke'mon here!</h1>
+    <h1>Create your own Pokémon here!</h1>
     <div class="container">
+        <form id="create_a_pokemon">
+            <div class="row">
+                <div class="col-s-6">
+                    <label for="name">Pokémon's name:</label>
+                </div>
+                <div class="col-s-6">
+                    <input type="text" id="name" name="name" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    <label for="image">Enter an image location for your Pokémon: </label>
+                </div>
+                <div class="col-s-6">
+                    <input type="text" id="image" name="image" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    <label for="numTypes">Select how many types you would like the Pokémon to have:</label>
+                </div>
+                <div class="col-s-6">
+                    <select id="numTypes" name="numTypes" onchange="updateNumTypes()">
+                        <option value="0">Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    Enter each type in a serpate input box please after you have selected how many types your Pokémon will have.
+                </div>
+                <div class="col-s-6">
+                    <input type="text" id="type1" style="display:none" />
+                    <input type="text" id="type2" style="display:none" />
+                    <input type="text" id="type3" style="display:none" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    <label for="numAbilities">Select how many abilities you would like the Pokémon to have:</label>
+                </div>
+                <div class="col-s-6">
+                    <select id="numAbilities" name="numAbilities" onchange="updateNumAbilities()">
+                        <option value="0">Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    Enter each ability in a serpate input box please after you have selected how many abilities your Pokémon will have.
+                </div>
+                <div class="col-s-6">
+                    <input type="text" id="ability1" style="display:none" />
+                    <input type="text" id="ability2" style="display:none" />
+                    <input type="text" id="ability3" style="display:none" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    Enter the 4 moves you would like your Pokémon to know. If you want them to know less than 4 moves then leave it blank.
+                </div>
+                <div class="col-s-6">
+                    <input type="text" id="move1" />
+                    <input type="text" id="move2" />
+                    <input type="text" id="move3" />
+                    <input type="text" id="move4" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-12">
+                    <p>What are your Pokémon's stats for each, don't leave one blank.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    <label for="speed">Speed:</label>
+                </div>
+                <div class="col-s-6">
+                    <input type="number" id="speed" name="speed" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    <label for="special_defense">Special Defense:</label>
+                </div>
+                <div class="col-s-6">
+                    <input type="number" id="special_defense" name="special_defense" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    <label for="special_attack">Special Attack:</label>
+                </div>
+                <div class="col-s-6">
+                    <input type="number" id="special_attack" name="special_attack" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    <label for="defense">Defense:</label>
+                </div>
+                <div class="col-s-6">
+                    <input type="number" id="defense" name="defense" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    <label for="attack">Attack:</label>
+                </div>
+                <div class="col-s-6">
+                    <input type="number" id="attack" name="attack" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-6">
+                    <label for="HP">Hit Points:</label>
+                </div>
+                <div class="col-s-6">
+                    <input type="number" id="HP" name="HP" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-s-3">
+                </div>
+                <div class="col-2 col-s-3">
+                    <button type="button" id="search" name="search" onclick="createPokemon()">Create Pokémon</button>
+                </div>
+                <div class="col-7 col-s-6">
+                    <button type="reset" id="clear" name="clear" onclick="clearCreation()">Clear all</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container2">
         <div class="row">
-            <form>
-                <input id="name" type="text" />
-            </form>
+            <div class="col-s-12">
+                Your created Pokémon will display below here.
+            </div>
+            <div id="results">
+            </div>
         </div>
     </div>
 </body>

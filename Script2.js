@@ -1,4 +1,6 @@
 let pokedata;
+let pokeCreations;
+
 if (window.localStorage.getItem("pokedata")) {
     pokedata = JSON.parse(window.localStorage.getItem("pokedata"));
 }
@@ -9,6 +11,13 @@ else {
         ability: {},
         type: {}
     }
+}
+
+if (window.localStorage.getItem("pokeCreations")) {
+    pokeCreations = JSON.parse(window.localStorage.getItem("pokeCreations"));
+}
+else {
+    pokeCreations = {};
 }
 
 function Pokemon(name, id, image, types, abilities, moves, stats) {
@@ -49,6 +58,10 @@ function Type(name, id, moves, pokemon) {
 
 function saveData() {
     window.localStorage.setItem("pokedata", JSON.stringify(pokedata));
+}
+
+function saveCreations() {
+    window.localStorage.setItem("pokeCreations", JSON.stringify(pokeCreations));
 }
 
 function updateQuery() {
@@ -507,5 +520,168 @@ function mouseOutNav(int) {
     if (elem.classList.contains("hyper2")) {
         elem.classList.add("hyper1");
         elem.classList.remove("hyper2");
+    }
+}
+
+function fillCreations() {
+    for (const obj of pokeCreations) {
+        let element = document.getElementById("results2");
+        let head = document.createElement("h4");
+        let body = document.createElement("p");
+        let section = document.createElement("div");
+        let image = document.createElement("img");
+        let nameID, typeText, abilityText, moveText, statText;
+        nameID = obj.name.charAt(0).toUpperCase() + obj.name.slice(1) + " id: " +
+            obj.id;
+        image.src = obj.image;
+        typeText = "Type: ";
+        for (let i = 0; i < obj.types.length; i++) {
+            typeText += obj.types[i];
+            if (i < obj.types.length - 2) {
+                typeText += ", ";
+            }
+            else if (i < obj.types.length - 1) {
+                if (obj.types.length > 2) {
+                    typeText += ", and ";
+                }
+                else {
+                    typeText += " and ";
+                }
+            }
+        }
+        abilityText = "Abilities: ";
+        for (let i = 0; i < obj.abilities.length; i++) {
+            abilityText += obj.abilities[i];
+            if (i < obj.abilities.length - 2) {
+                abilityText += ", ";
+            }
+            else if (i < obj.abilities.length - 1) {
+                if (obj.abilities.length > 2) {
+                    abilityText += ", and ";
+                }
+                else {
+                    abilityText += " and ";
+                }
+            }
+        }
+        moveText = "Moves: "
+        for (let i = 0; i < obj.moves.length; i++) {
+            moveText += obj.moves[i];
+            if (i < obj.moves.length - 2) {
+                moveText += ", ";
+            }
+            else if (i < obj.moves.length - 1) {
+                moveText += ", and ";
+            }
+        }
+        statText = "Base Stats: "
+        for (let i = 0; i < obj.stats.length; i++) {
+            statText += obj.stats[i].name + ": " + obj.stats[i].base;
+            if (i < obj.stats.length - 2) {
+                statText += ", ";
+            }
+            else if (i < obj.stats.length - 1) {
+                statText += ", and ";
+            }
+        }
+        let text1 = document.createTextNode(nameID);
+        let text2 = document.createTextNode(typeText);
+        let text3 = document.createTextNode(abilityText);
+        let text4 = document.createTextNode(moveText);
+        let text5 = document.createTextNode(statText);
+        head.appendChild(text1);
+        body.appendChild(text2);
+        body.appendChild(document.createElement("br"));
+        body.appendChild(text3);
+        body.appendChild(document.createElement("br"));
+        body.appendChild(text5);
+        body.appendChild(document.createElement("br"));
+        body.appendChild(text4);
+        section.appendChild(image);
+        section.appendChild(head);
+        section.appendChild(body);
+        element.insertBefore(section, element.childNodes[0]);
+    }
+}
+
+function fillSearches() {
+    for (const obj of pokedata.pokemon) {
+        let element = document.getElementById("results3");
+        let head = document.createElement("h4");
+        let body = document.createElement("p");
+        let section = document.createElement("div");
+        let image = document.createElement("img");
+        let nameID, typeText, abilityText, moveText, statText;
+
+        nameID = obj.name.charAt(0).toUpperCase() + obj.name.slice(1) + " id: " +
+            obj.id;
+        image.src = obj.image;
+        typeText = "Type: ";
+        for (let i = 0; i < obj.types.length; i++) {
+            typeText += obj.types[i];
+            if (i < obj.types.length - 2) {
+                typeText += ", ";
+            }
+            else if (i < obj.types.length - 1) {
+                if (obj.types.length > 2) {
+                    typeText += ", and ";
+                }
+                else {
+                    typeText += " and ";
+                }
+            }
+        }
+        abilityText = "Abilities: ";
+        for (let i = 0; i < obj.abilities.length; i++) {
+            abilityText += obj.abilities[i];
+            if (i < obj.abilities.length - 2) {
+                abilityText += ", ";
+            }
+            else if (i < obj.abilities.length - 1) {
+                if (obj.abilities.length > 2) {
+                    abilityText += ", and ";
+                }
+                else {
+                    abilityText += " and ";
+                }
+            }
+        }
+        moveText = "Moves: "
+        for (let i = 0; i < obj.moves.length; i++) {
+            moveText += obj.moves[i];
+            if (i < obj.moves.length - 2) {
+                moveText += ", ";
+            }
+            else if (i < obj.moves.length - 1) {
+                moveText += ", and ";
+            }
+        }
+        statText = "Base Stats: "
+        for (let i = 0; i < obj.stats.length; i++) {
+            statText += obj.stats[i].name + ": " + obj.stats[i].base;
+            if (i < obj.stats.length - 2) {
+                statText += ", ";
+            }
+            else if (i < obj.stats.length - 1) {
+                statText += ", and ";
+            }
+        }
+        let text1 = document.createTextNode(nameID);
+        let text2 = document.createTextNode(typeText);
+        let text3 = document.createTextNode(abilityText);
+        let text4 = document.createTextNode(moveText);
+        let text5 = document.createTextNode(statText);
+        head.appendChild(text1);
+        body.appendChild(text2);
+        body.appendChild(document.createElement("br"));
+        body.appendChild(text3);
+        body.appendChild(document.createElement("br"));
+        body.appendChild(text5);
+        body.appendChild(document.createElement("br"));
+        body.appendChild(text4);
+        section.appendChild(image);
+        section.appendChild(head);
+        section.appendChild(body);
+        element.insertBefore(section, element.childNodes[0]);
     }
 }
