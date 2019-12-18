@@ -523,6 +523,107 @@ function mouseOutNav(int) {
     }
 }
 
+function createPokemon() {
+    let name, imageSRC, types, numType, abilities, numAbilities, moves, stats;
+    name = document.getElementById("name").value;
+    imageSRC = document.getElementById("image").value;
+    if (name == "")
+        return;
+    if (img == "")
+        return;
+    numType = document.getElementById("numTypes").value;
+    types = [];
+    if (numType != 0) {
+        for (let i = 0; i < numType; i++) {
+            types.push(document.getElementById("type" + (i + 1)).value);
+        }
+    }
+    numAbilities = document.getElementById("numAbilities").value;
+    abilities = [];
+    if (numAbilities != 0) {
+        for (let i = 0; i < numAbilities; i++) {
+            abilities.push(document.getElementById("abilitiy" + (i + 1)).value);
+        }
+    }
+    moves = [];
+    for (let i = 0; i < 4; i++) {
+        let move = document.getElementById("move" + (i + 1)).value;
+        if (move != "") {
+            moves.push(move);
+        }
+    }
+    stats = [];
+    let speed = document.getElementById("speed").value;
+    if (speed != NaN && speed != null) {
+        stats.push({
+            name: "Speed",
+            base: speed
+        });
+    }
+    let special_defence = document.getElementById("special_defence").value;
+    if (special_defence != NaN && special_defence != null) {
+        stats.push({
+            name: "Special_Defence",
+            base: special_defence
+        });
+    }
+    let special_attack = document.getElementById("special_attack").value;
+    if (special_attack != NaN && special_attack != null) {
+        stats.push({
+            name: "Special_Attack",
+            base: special_attack
+        });
+    }
+    let defence = document.getElementById("defence").value;
+    if (defence != NaN && defence != null) {
+        stats.push({
+            name: "Defence",
+            base: defence
+        });
+    }
+    let attack = document.getElementById("attack").value;
+    if (attack != NaN && attack != null) {
+        stats.push({
+            name: "Attack",
+            base: attack
+        });
+    }
+    let HP = document.getElementById("HP").value;
+    if (HP != NaN && HP != null) {
+        stats.push({
+            name: "Hit_Points",
+            base: HP
+        });
+    }
+    pokeCreations[name.toLowerCase()] = new Pokemon(name, null, imageSRC, types, abilities, moves, stats);
+    saveCreations();
+    document.getElementById("create_a_pokemon").reset();
+}
+
+function updateNumTypes() {
+    let numTypes = document.getElementById("numTypes").value;
+    for (let i = 0; i < numTypes; i++) {
+        document.getElementById("type" + (i + 1)).style.display = "inline";
+    }
+    if (numTypes < 3) {
+        for (let i = 3; i > numTypes; i--) {
+            document.getElementById("type" + i).style.display = "none";
+        }
+    }
+}
+
+function updateNumAbilities {
+    let numAbilities = document.getElementById("numAbilities").value;
+    for (let i = 0; i < numAbilities; i++) {
+        document.getElementById("ability" + (i + 1)).style.display = "inline";
+    }
+    if (numTypes < 3) {
+        for (let i = 3; i > numAbilities; i--) {
+            document.getElementById("ability" + i).style.display = "none";
+        }
+    }
+}
+
 function fillCreations() {
 
     for (const obj in pokeCreations) {
@@ -531,9 +632,8 @@ function fillCreations() {
         let body = document.createElement("p");
         let section = document.createElement("div");
         let image = document.createElement("img");
-        let nameID, typeText, abilityText, moveText, statText;
-        nameID = pokeCreations[obj].name.charAt(0).toUpperCase() + pokeCreations[obj].name.slice(1) + " id: " +
-            pokeCreations[obj].id;
+        let name, typeText, abilityText, moveText, statText;
+        name = pokeCreations[obj].name.charAt(0).toUpperCase() + pokeCreations[obj].name.slice(1);
         image.src = pokeCreations[obj].image;
         typeText = "Type: ";
         for (let i = 0; i < pokeCreations[obj].types.length; i++) {
@@ -585,7 +685,7 @@ function fillCreations() {
                 statText += ", and ";
             }
         }
-        let text1 = document.createTextNode(nameID);
+        let text1 = document.createTextNode(name);
         let text2 = document.createTextNode(typeText);
         let text3 = document.createTextNode(abilityText);
         let text4 = document.createTextNode(moveText);
