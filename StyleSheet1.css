@@ -37,8 +37,7 @@ header {
 .banner {
     width: 1000px;
     height: 221px;
-    margin: 0px auto;
-    border: aqua 1px solid;
+    margin: 5px auto;
     overflow: hidden;
 }
 
