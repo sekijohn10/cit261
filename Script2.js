@@ -529,7 +529,7 @@ function createPokemon() {
     imageSRC = document.getElementById("image").value;
     if (name == "")
         return;
-    if (img == "")
+    if (imageSRC == "")
         return;
     numType = document.getElementById("numTypes").value;
     types = [];
