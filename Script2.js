@@ -602,8 +602,7 @@ function createPokemon() {
     let body = document.createElement("p");
     let section = document.createElement("div");
     let image = document.createElement("img");
-    let name, typeText, abilityText, moveText, statText;
-    name = name.charAt(0).toUpperCase() + name.slice(1);
+    let typeText, abilityText, moveText, statText;
     image.src = imageSRC;
     typeText = "Type: ";
     for (let i = 0; i < types.length; i++) {
