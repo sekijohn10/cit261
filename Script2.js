@@ -612,7 +612,7 @@ function updateNumTypes() {
     }
 }
 
-function updateNumAbilities {
+function updateNumAbilities() {
     let numAbilities = document.getElementById("numAbilities").value;
     for (let i = 0; i < numAbilities; i++) {
         document.getElementById("ability" + (i + 1)).style.display = "inline";
