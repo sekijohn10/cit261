@@ -597,6 +597,81 @@ function createPokemon() {
     }
     pokeCreations[name.toLowerCase()] = new Pokemon(name, null, imageSRC, types, abilities, moves, stats);
     saveCreations();
+    let element = document.getElementById("results4");
+    let head = document.createElement("h4");
+    let body = document.createElement("p");
+    let section = document.createElement("div");
+    let image = document.createElement("img");
+    let name, typeText, abilityText, moveText, statText;
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+    image.src = imageSRC;
+    typeText = "Type: ";
+    for (let i = 0; i < pokeCreations[obj].types.length; i++) {
+        typeText += types[i];
+        if (i < types.length - 2) {
+            typeText += ", ";
+        }
+        else if (i < types.length - 1) {
+            if (types.length > 2) {
+                typeText += ", and ";
+            }
+            else {
+                typeText += " and ";
+            }
+        }
+    }
+    abilityText = "Abilities: ";
+    for (let i = 0; i < abilities.length; i++) {
+        abilityText += abilities[i];
+        if (i < abilities.length - 2) {
+            abilityText += ", ";
+        }
+        else if (i < abilities.length - 1) {
+            if (abilities.length > 2) {
+                abilityText += ", and ";
+            }
+            else {
+                abilityText += " and ";
+            }
+        }
+    }
+    moveText = "Moves: "
+    for (let i = 0; i < moves.length; i++) {
+        moveText += moves[i];
+        if (i < moves.length - 2) {
+            moveText += ", ";
+        }
+        else if (i < moves.length - 1) {
+            moveText += ", and ";
+        }
+    }
+    statText = "Base Stats: "
+    for (let i = 0; i < stats.length; i++) {
+        statText += stats[i].name + ": " + stats[i].base;
+        if (i < stats.length - 2) {
+            statText += ", ";
+        }
+        else if (i < stats.length - 1) {
+            statText += ", and ";
+        }
+    }
+    let text1 = document.createTextNode(name);
+    let text2 = document.createTextNode(typeText);
+    let text3 = document.createTextNode(abilityText);
+    let text4 = document.createTextNode(moveText);
+    let text5 = document.createTextNode(statText);
+    head.appendChild(text1);
+    body.appendChild(text2);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text3);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text5);
+    body.appendChild(document.createElement("br"));
+    body.appendChild(text4);
+    section.appendChild(image);
+    section.appendChild(head);
+    section.appendChild(body);
+    element.insertBefore(section, element.childNodes[0]);
     document.getElementById("create_a_pokemon").reset();
 }
 
