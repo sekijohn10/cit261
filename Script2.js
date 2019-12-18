@@ -606,7 +606,7 @@ function createPokemon() {
     name = name.charAt(0).toUpperCase() + name.slice(1);
     image.src = imageSRC;
     typeText = "Type: ";
-    for (let i = 0; i < pokeCreations[obj].types.length; i++) {
+    for (let i = 0; i < types.length; i++) {
         typeText += types[i];
         if (i < types.length - 2) {
             typeText += ", ";
