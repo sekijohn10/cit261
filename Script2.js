@@ -617,7 +617,7 @@ function updateNumAbilities() {
     for (let i = 0; i < numAbilities; i++) {
         document.getElementById("ability" + (i + 1)).style.display = "inline";
     }
-    if (numTypes < 3) {
+    if (numAbilities < 3) {
         for (let i = 3; i > numAbilities; i--) {
             document.getElementById("ability" + i).style.display = "none";
         }
