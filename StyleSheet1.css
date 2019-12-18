@@ -34,6 +34,27 @@ header {
     padding: 20px;
 }
 
+.banner {
+    width: 1000px;
+    height: 221px;
+    margin: 0px auto;
+    border: aqua 1px solid;
+    overflow: hidden;
+}
+
+.movingBanner {
+    width: 1450px;
+    height: 221px;
+    background: url(https://sekijohn10.github.io/cit261/balls.jpg) repeat-x;
+    position: relative;
+    animation: banner_roll linear 15s infinite;
+}
+
+@keyframes banner_roll {
+    from{ right: 0px; }
+    to { right: 221px; }
+}
+
 button {
     border-radius: 10px;
     padding: 10px 20px;
