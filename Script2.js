@@ -542,7 +542,7 @@ function createPokemon() {
     abilities = [];
     if (numAbilities != 0) {
         for (let i = 0; i < numAbilities; i++) {
-            abilities.push(document.getElementById("abilitiy" + (i + 1)).value);
+            abilities.push(document.getElementById("ability" + (i + 1)).value);
         }
     }
     moves = [];
