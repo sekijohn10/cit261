@@ -524,7 +524,7 @@ function mouseOutNav(int) {
 }
 
 function fillCreations() {
-    for (const obj of pokeCreations) {
+    for (const obj in pokeCreations) {
         let element = document.getElementById("results2");
         let head = document.createElement("h4");
         let body = document.createElement("p");
@@ -605,7 +605,7 @@ function fillCreations() {
 }
 
 function fillSearches() {
-    for (const obj of pokedata.pokemon) {
+    for (const obj in pokedata.pokemon) {
         let element = document.getElementById("results3");
         let head = document.createElement("h4");
         let body = document.createElement("p");
