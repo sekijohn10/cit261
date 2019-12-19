@@ -860,3 +860,24 @@ function fillSearches() {
         element.insertBefore(section, element.childNodes[0]);
     }
 }
+
+function flip(int) {
+    let back = document.getElementById("flipBack" + int);
+    let front = document.getElementById("flipFront" + int);
+    if (back.classList.contains("back")) {
+        back.classList.add("backMobile");
+        back.classList.remove("back");
+    }
+    else {
+        back.classList.add("back");
+        back.classList.remove("backMobile");
+    }
+    if (front.classList.contains("front")) {
+        front.classList.add("frontMobile");
+        front.classList.remove("front");
+    }
+    else {
+        front.classList.add("front");
+        front.classList.remove("frontMobile");
+    }
+}
