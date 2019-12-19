@@ -35,7 +35,7 @@ header {
 }
 
 .banner {
-    width: 1000px;
+    width: 100%;
     height: 221px;
     margin: 5px auto;
     overflow: hidden;
@@ -50,8 +50,13 @@ header {
 }
 
 @keyframes banner_roll {
-    from{ right: 0px; }
-    to { right: 221px; }
+    from {
+        right: 0px;
+    }
+
+    to {
+        right: 221px;
+    }
 }
 
 button {
@@ -129,7 +134,7 @@ a.hyper2 {
 }
 
 ul {
-    list-style-type:none;
+    list-style-type: none;
 }
 
 /* For mobile phones: */
@@ -189,6 +194,12 @@ ul {
         width: 100%;
     }
 }
+
+@media only screen and (min-width: 1000px) {
+    .banner {
+        width: 1000px;
+    }
+
 
 @media only screen and (min-width: 1200px) {
     /* For desktop: */
